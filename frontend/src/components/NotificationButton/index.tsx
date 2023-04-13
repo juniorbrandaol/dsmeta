@@ -2,6 +2,7 @@ import icon from "../../assets/img/notification-icon.svg";
 import "./styles.css";
 //API
 import userService from "../../apiServices/request";
+import { toast } from "react-toastify";
 
 type Props={
    saleId :number;
@@ -11,7 +12,7 @@ type Props={
 async function handleClick(id: number ){
   
    await userService.sendNotification(id).then(response=>{
-      alert("Enviado")  
+     toast.info("Sms enviado com sucesso.") ;
    })
 }
 
