@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.data.domain.Pageable;
+import org.springframework.web.client.HttpClientErrorException;
 
 @RestController
 @RequestMapping(value="/sales")
@@ -22,8 +23,14 @@ public class SaleController {
     public Page<Sale> findSales(
             @PathVariable(value = "minDate") String minDate,
             @PathVariable(value = "maxDate") String maxDate,
-            Pageable pageable){
-       return service.findSalles(minDate,maxDate,pageable);
+            Pageable pageable)  {
+        if(!minDate.isEmpty()){
+            System.out.println("=================not empity ================");
+            return service.findSalles(minDate, maxDate, pageable);
+        }else{
+            System.out.println("=================empity ================");
+        }
+return  null;
     }
 
     @GetMapping("{id}/notification")
