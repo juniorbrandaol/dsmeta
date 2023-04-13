@@ -8,10 +8,10 @@ class UserService {
     /********************* SALE ******************/ 
     
     //RETORNA AS VENDAS
-    async findSales(minDate:string ,maxDate:string ) {
+    async findAllSalesByDate(minDate:string ,maxDate:string ) {
 
         return axios({
-            url: BASE_URL + "/sales?minDate="+minDate+"&maxDate="+maxDate,
+            url: BASE_URL + "/sales/"+minDate+"/"+maxDate,
             method: "GET",
             headers: {
                 "Authorization": "Bearer ",

@@ -26,7 +26,7 @@ function SalesCard() {
     const dmin = minDate.toISOString().slice(0,10);
     const dmax = maxDate.toISOString().slice(0,10);
 
-     await userService.findSales(dmin,dmax).then(response=>{
+     await userService.findAllSalesByDate(dmin,dmax).then(response=>{
          setSales(response.data.content);
     })
   }

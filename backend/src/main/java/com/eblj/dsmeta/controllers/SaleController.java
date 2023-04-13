@@ -18,10 +18,10 @@ public class SaleController {
     @Autowired
     private SmsService smsService;
 
-    @GetMapping
+    @GetMapping("{minDate}/{maxDate}")
     public Page<Sale> findSales(
-            @RequestParam(value = "minDate",defaultValue = "") String minDate,
-            @RequestParam(value = "maxDate",defaultValue = "") String maxDate,
+            @PathVariable(value = "minDate") String minDate,
+            @PathVariable(value = "maxDate") String maxDate,
             Pageable pageable){
        return service.findSalles(minDate,maxDate,pageable);
     }
