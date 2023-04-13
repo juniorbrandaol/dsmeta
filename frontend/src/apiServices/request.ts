@@ -23,6 +23,22 @@ class UserService {
         })
     }
 
+     //ENVIA NOTIFICAÇÃO
+     async sendNotification(saleId:number) {
+
+        return axios({
+            url: BASE_URL + "/sales/"+saleId+"/notification",
+            method: "GET",
+            headers: {
+                "Authorization": "Bearer ",
+            }
+        }).then((response) => {
+            return Promise.resolve(response)
+        }).catch((error) => {
+            return Promise.reject(error.response.data)
+        })
+    }
+
 }
 
 const userService = new UserService()
