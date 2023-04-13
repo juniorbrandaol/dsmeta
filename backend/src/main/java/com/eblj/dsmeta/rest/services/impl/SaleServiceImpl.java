@@ -20,8 +20,8 @@ public class SaleServiceImpl implements SaleService {
     public Page<Sale> findSalles(String minDate,String maxDate,Pageable pageable) {
         LocalDate today = LocalDate.ofInstant(Instant.now(), ZoneId.systemDefault());
 
-        LocalDate min = minDate.equals("") ? today.minusDays(365) : LocalDate.parse(minDate);
-        LocalDate max = maxDate.equals("") ? today : LocalDate.parse(maxDate);
+        LocalDate min = minDate==null ? today.minusDays(365) : LocalDate.parse(minDate);
+        LocalDate max = maxDate==null ? today : LocalDate.parse(maxDate);
 
         return repository.findSales(min,max,pageable);
     }
