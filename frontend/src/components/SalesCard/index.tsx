@@ -4,9 +4,9 @@ import "./styles.css";
 
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import axios from "axios";
-import { BASE_URL } from "../../utils/request";
 import { Sale } from "../../models/sale";
+//API
+import userService from "../../apiServices/request";
 
 function SalesCard() {
 
@@ -18,12 +18,18 @@ function SalesCard() {
   const [sales, setSales] = useState<Sale[]>([]);
 
   useEffect(()=>{
-    axios.get(`${BASE_URL}/sales`)
-    .then(response=>{
-      setSales(response.data.content);
+     fetchSales();
+  },[minDate,maxDate]);
+
+  const fetchSales = async () => {
+
+    const dmin = minDate.toISOString().slice(0,10);
+    const dmax = maxDate.toISOString().slice(0,10);
+
+     await userService.findSales(dmin,dmax).then(response=>{
+         setSales(response.data.content);
     })
-   
-  },[]);
+  }
 
   return (
     <div className="dsmeta-card">
