@@ -23,10 +23,7 @@ public class SaleController {
 
     @GetMapping(value={"","{minDate}/{maxDate}"})
     public Page<Sale> findSales(
-          //  @PathVariable(value = "minDate") String minDate,
-          //  @PathVariable(value = "maxDate") String maxDate,
-           @PathVariable Map<String, String> pathVarsMap,
-            Pageable pageable)  {
+           @PathVariable Map<String, String> pathVarsMap,Pageable pageable)  {
         String minDate = pathVarsMap.get("minDate");
         String maxDate = pathVarsMap.get("maxDate");
         return service.findSalles(minDate, maxDate, pageable);

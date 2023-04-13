@@ -22,8 +22,6 @@ public class SaleServiceImpl implements SaleService {
 
         LocalDate min = minDate==null ? today.minusDays(365) : LocalDate.parse(minDate);
         LocalDate max = maxDate==null ? today : LocalDate.parse(maxDate);
-
         return repository.findSales(min,max,pageable);
     }
-
 }
